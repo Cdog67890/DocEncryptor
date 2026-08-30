@@ -55,7 +55,7 @@ jobs:
       - name: Build Universal macOS Executable
         run: |
           pip install pyinstaller
-          pyinstaller --onefile --target-architecture universal2 DocEncryptor.py
+          pyinstaller --onefile --target-architecture universal2 app.py
 
       - name: Upload macOS application
         uses: actions/upload-artifact@v4
