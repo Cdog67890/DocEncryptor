@@ -43,7 +43,7 @@ jobs:
   # MACOS INTEL
   # =====================
   build-macos-intel:
-    runs-on: macos-13
+    runs-on: macos-15-intel
 
     steps:
       - name: Checkout repository
@@ -61,7 +61,16 @@ jobs:
 
       - name: Build Intel macOS application
         run: |
-          pyinstaller --windowed --name DocEncryptor app.py
+          pyinstaller \
+          --windowed \
+          --target-architecture x86_64 \
+          --name DocEncryptor \
+          --osx-bundle-identifier com.cdog67890.docencryptor \
+          app.py
+
+      - name: Verify application signature
+      run: |
+        codesign --verify --deep --strict --verbose=2 dist/DocEncryptor.app
 
       - name: Upload Intel macOS application
         uses: actions/upload-artifact@v4
@@ -92,7 +101,12 @@ jobs:
 
       - name: Build Apple Silicon macOS application
         run: |
-          pyinstaller --windowed --name DocEncryptor app.py
+          pyinstaller \
+          --windowed \
+          --target-architecture arm64 \
+          --name DocEncryptor \
+          --osx-bundle-identifier com.cdog67890.docencryptor \
+          app.py
 
       - name: Upload Apple Silicon macOS application
         uses: actions/upload-artifact@v4
