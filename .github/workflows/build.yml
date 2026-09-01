@@ -70,7 +70,7 @@ jobs:
 
       - name: Verify application signature
         run: |
-        codesign --verify --deep --strict --verbose=2 dist/DocEncryptor.app
+          codesign --verify --deep --strict --verbose=2 dist/DocEncryptor.app
 
       - name: Upload Intel macOS application
         uses: actions/upload-artifact@v4
