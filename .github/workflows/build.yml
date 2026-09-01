@@ -119,7 +119,6 @@ jobs:
   # =====================
   # LINUX
   # =====================
-  jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
