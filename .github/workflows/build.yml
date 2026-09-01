@@ -69,7 +69,7 @@ jobs:
           app.py
 
       - name: Verify application signature
-      run: |
+        run: |
         codesign --verify --deep --strict --verbose=2 dist/DocEncryptor.app
 
       - name: Upload Intel macOS application
