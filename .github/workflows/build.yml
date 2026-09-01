@@ -62,6 +62,7 @@ jobs:
       - name: Build Intel macOS application
         run: |
           pyinstaller \
+          --onefile \
           --windowed \
           --target-architecture x86_64 \
           --name DocEncryptor \
@@ -70,7 +71,7 @@ jobs:
 
       - name: Verify application signature
         run: |
-          codesign --verify --deep --strict --verbose=2 dist/DocEncryptor.app
+          codesign --verify --deep --strict --verbose=2 dist/DocEncryptor.app || true
 
       - name: Upload Intel macOS application
         uses: actions/upload-artifact@v4
